@@ -1,3 +1,11 @@
+:root {
+  --dark-brown: #a54a38;
+  --light-brown: #bf624c;
+  --dark-green: #51af5e;
+  --light-green: #51af5e;
+  --shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
 body {
   display: grid;
   place-items: center;
@@ -23,6 +31,7 @@ input:checked {
   border-radius: 40px;
   background-color: #ccefff;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
 }
 
 [class^="layer-"] {
@@ -107,19 +116,16 @@ input:checked {
   z-index: 8;
   margin: 0 auto;
   width: 200px;
-  height: 160px;
-  background-color: rgb(19, 103, 93);
+  height: 140px;
 }
 
 /** lawn 2 */
 .layer-9 {
-  left: 0;
   bottom: 0;
   z-index: 9;
   margin: 0 auto;
-  width: 125px;
-  height: 120px;
-  background-color: rgb(174, 219, 213);
+  width: 120px;
+  height: 100px;
 }
 
 /** lawn 3 */
@@ -130,7 +136,6 @@ input:checked {
   margin: 0 auto;
   width: 125px;
   height: 120px;
-  background-color: rgb(174, 219, 213);
 }
 
 /** bunny head */
@@ -193,4 +198,98 @@ input:checked {
 .right-ear-inner {
   right: 15px;
   top: 8px;
+}
+
+/** Lawn & land */
+.layer-3,
+.layer-5,
+.layer-7 {
+  background-color: var(--light-brown);
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.lawn {
+  width: 100%;
+  height: 20px;
+  background-color: var(--dark-green);
+}
+
+.land {
+  background: linear-gradient(135deg, var(--dark-green) 25%, transparent 25%) -50px
+      0,
+    linear-gradient(-135deg, var(--dark-green) 25%, transparent 25%) -50px 0,
+    linear-gradient(45deg, var(--light-brown) 25%, transparent 25%),
+    linear-gradient(-45deg, transparent 25%, var(--dark-brown) 25%);
+  width: 100%;
+  height: 30px;
+  background-size: 33px 30px;
+}
+
+/** Nubes */
+
+.layer-9__left-cloud,
+.layer-9__right-cloud,
+.layer-10__left-cloud,
+.layer-10__right-cloud {
+  display: inline-block;
+  position: absolute;
+  background-color: #fff;
+}
+
+.layer-9__left-cloud {
+  left: 0;
+  width: 80px;
+  height: 100%;
+  border-radius: 40px 40px 0 0;
+}
+
+.layer-9__right-cloud {
+  left: 80px;
+  bottom: 0;
+  width: 40px;
+  height: 60%;
+  border-radius: 0 40px 30px 0;
+}
+
+.layer-10__left-cloud {
+  right: 80px;
+  bottom: 0;
+  width: 40px;
+  height: 60%;
+  border-radius: 40px 0 0 30px;
+}
+
+.layer-10__right-cloud {
+  right: 0px;
+  width: 80px;
+  height: 100%;
+  border-radius: 40px 40px 0 0;
+}
+
+.layer-8__left-lawn,
+.layer-8__center-lawn,
+.layer-8__right-lawn {
+  background: var(--dark-green);
+  border-radius: 40px 40px 0 0;
+  bottom: 0;
+  display: inline-block;
+  position: absolute;
+  width: 80px;
+}
+
+.layer-8__left-lawn {
+  height: 70%;
+  left: 0;
+}
+
+.layer-8__center-lawn {
+  height: 100%;
+  left: 60px;
+}
+
+.layer-8__right-lawn {
+  height: 80%;
+  left: 130px;
 }
