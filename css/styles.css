@@ -1,32 +1,78 @@
+/** General */
 :root {
   --dark-brown: #a54a38;
   --light-brown: #bf624c;
   --dark-green: #51af5e;
   --light-green: #51af5e;
   --shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  --bunny-width: 80px;
+  --bunny-height: 450px;
 }
 
 body {
   display: grid;
   place-items: center;
   margin: 0;
-  height: 100vh;
   width: 100%;
+  height: 100vh;
   counter-reset: score;
 }
 
-input [type="checkbox"] {
-  position: relative;
-  top: 0;
-  z-index: 2;
-  margin: 0;
-  width: 80px;
-  height: 50px;
-  appearance: none;
-  cursor: pointer;
+/** Title */
+.title {
+  display: flex;
+  justify-content: center;
+  margin: 45px 0 10px;
+  color: var(--light-brown);
 }
 
-input [type="checkbox"]:focus {
+.title img {
+  width: 60%;
+}
+
+.score {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  color: var(--light-brown);
+}
+
+.score::after {
+  content: counter(score);
+}
+
+/** Phone frame */
+/** Phone */
+.phone {
+  position: relative;
+  width: 300px;
+  height: 600px;
+  background-color: #ccefff;
+  border: 8px solid #333;
+  border-radius: 40px;
+  box-shadow: var(--shadow); /* After */
+  overflow: hidden; /* After */
+}
+
+/** General layers */
+[class^="layer-"] {
+  position: absolute;
+}
+
+/** Inputs */
+input[type="checkbox"] {
+  position: relative;
+  z-index: 2;
+  width: 80px;
+  height: 50px;
+  cursor: pointer;
+  appearance: none;
+  margin: 0;
+  top: 0;
+}
+
+input[type="checkbox"]:focus {
   appearance: none;
   outline: none;
 }
@@ -35,64 +81,14 @@ input:checked {
   counter-increment: score;
 }
 
-.total-count::after {
-  content: " Los puntos son  " counter(game);
-}
-
-.phone {
-  position: absolute;
-  height: 600px;
-  width: 300px;
-  border: 8px solid #333;
-  border-radius: 40px;
-  background-color: #ccefff;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-  overflow: hidden;
-}
-
-[class^="layer-"] {
-  position: absolute;
-}
-
+/** Bunny layers  */
 /** bunny 1 */
 .layer-1 {
   bottom: 0;
   right: 60px;
   z-index: 1;
-  height: 450px;
-  width: 80px;
-}
-
-.layer-1 {
-  /* animation-name: hopping;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite; */
-  animation: hopping 1s ease-in-out infinite;
-}
-
-/* .layer-2 {
-  animation: hopping 1.1s ease-in-out infinite;
-} */
-
-.layer-4 {
-  animation: hopping 0.9s ease-in-out infinite;
-}
-
-.layer-6 {
-  animation: hopping 1.4s ease-in-out infinite;
-}
-
-@keyframes hopping {
-  0% {
-    bottom: 0;
-  }
-  25% {
-    bottom: -80px;
-  }
-  100% {
-    bottom: 0;
-  }
+  width: var(--bunny-width);
+  height: var(--bunny-height);
 }
 
 /** bunny 2 */
@@ -100,20 +96,8 @@ input:checked {
   bottom: 0;
   left: 60px;
   z-index: 2;
-  height: 450px;
-  width: 80px;
-}
-
-/** wall 1 */
-.layer-3 {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  margin: 0 auto;
-  width: 220px;
-  height: 400px;
-  background-color: wheat;
+  width: var(--bunny-width);
+  height: var(--bunny-height);
 }
 
 /** bunny 3 */
@@ -121,19 +105,8 @@ input:checked {
   bottom: 0;
   left: 15px;
   z-index: 4;
+  width: var(--bunny-width);
   height: 350px;
-  width: 80px;
-}
-
-/** wall 2 */
-.layer-5 {
-  left: 0;
-  bottom: 0;
-  z-index: 5;
-  margin: 0 auto;
-  width: 200px;
-  height: 300px;
-  background-color: rgb(183, 161, 120);
 }
 
 /** bunny 4 */
@@ -141,49 +114,8 @@ input:checked {
   bottom: 0;
   right: 30px;
   z-index: 6;
+  width: var(--bunny-width);
   height: 250px;
-  width: 80px;
-}
-
-/** wall 3 */
-.layer-7 {
-  right: 0;
-  bottom: 0;
-  z-index: 7;
-  margin: 0 auto;
-  width: 160px;
-  height: 200px;
-  background-color: wheat;
-}
-
-/** lawn 1 */
-.layer-8 {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 8;
-  margin: 0 auto;
-  width: 200px;
-  height: 140px;
-}
-
-/** lawn 2 */
-.layer-9 {
-  bottom: 0;
-  z-index: 9;
-  margin: 0 auto;
-  width: 120px;
-  height: 100px;
-}
-
-/** lawn 3 */
-.layer-10 {
-  right: 0;
-  bottom: 0;
-  z-index: 10;
-  margin: 0 auto;
-  width: 125px;
-  height: 120px;
 }
 
 /** bunny head */
@@ -197,6 +129,7 @@ input:checked {
   border-radius: 50%;
 }
 
+/** bunny eyes */
 .head__eye {
   position: absolute;
   top: 15px;
@@ -204,23 +137,6 @@ input:checked {
   height: 4px;
   background-color: gray;
   border-radius: 50%;
-  animation-name: blink;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes blink {
-  0% {
-    height: 4px;
-  }
-  5% {
-    transform: translate(0px, 2px);
-    height: 1px;
-  }
-  10% {
-    transform: translate(0px, 0px);
-    height: 4px;
-  }
 }
 
 .head__eye--left {
@@ -230,6 +146,7 @@ input:checked {
   right: 30px;
 }
 
+/** bunny ears */
 .left-ear-outer,
 .right-ear-outer {
   position: absolute;
@@ -265,20 +182,46 @@ input:checked {
   top: 8px;
 }
 
-/** Lawn & land */
+/** Wall layers  */
+/** wall 1 */
+.layer-3 {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  margin: 0 auto;
+  width: 220px;
+  height: 400px;
+}
+
+/** wall 2 */
+.layer-5 {
+  bottom: 0;
+  z-index: 5;
+  width: 200px;
+  height: 300px;
+}
+
+/** wall 3 */
+.layer-7 {
+  right: 0;
+  bottom: 0;
+  z-index: 7;
+  margin: 0 auto;
+  width: 160px;
+  height: 200px;
+}
+
+/** Land & lawn */
+/** land */
 .layer-3,
 .layer-5,
 .layer-7 {
+  position: absolute;
   background-color: var(--light-brown);
   box-shadow: var(--shadow);
   border-radius: 15px;
   overflow: hidden;
-}
-
-.lawn {
-  width: 100%;
-  height: 20px;
-  background-color: var(--dark-green);
 }
 
 .land {
@@ -292,8 +235,69 @@ input:checked {
   background-size: 33px 30px;
 }
 
-/** Nubes */
+/** lawn */
+.lawn {
+  width: 100%;
+  height: 20px;
+  background-color: var(--dark-green);
+}
 
+/** lawn 1 */
+.layer-8 {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+  margin: 0 auto;
+  width: 200px;
+  height: 140px;
+}
+
+.layer-8__left-lawn,
+.layer-8__center-lawn,
+.layer-8__right-lawn {
+  background: var(--dark-green);
+  border-radius: 40px 40px 0 0;
+  bottom: 0;
+  display: inline-block;
+  position: absolute;
+  width: 80px;
+}
+
+.layer-8__left-lawn {
+  height: 70%;
+  left: 0;
+}
+
+.layer-8__center-lawn {
+  height: 100%;
+  left: 60px;
+}
+
+.layer-8__right-lawn {
+  height: 80%;
+  left: 130px;
+}
+
+/** lawn 2 */
+.layer-9 {
+  bottom: 0;
+  z-index: 9;
+  width: 120px;
+  height: 100px;
+}
+
+/** lawn 3 */
+.layer-10 {
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  margin: 0 auto;
+  width: 120px;
+  height: 100px;
+}
+
+/** Clouds */
 .layer-9__left-cloud,
 .layer-9__right-cloud,
 .layer-10__left-cloud,
@@ -333,28 +337,75 @@ input:checked {
   border-radius: 40px 40px 0 0;
 }
 
-.layer-8__left-lawn,
-.layer-8__center-lawn,
-.layer-8__right-lawn {
-  background: var(--dark-green);
-  border-radius: 40px 40px 0 0;
-  bottom: 0;
-  display: inline-block;
-  position: absolute;
-  width: 80px;
+/** Animaciones */
+/** Animación ojos */
+.head__eye {
+  animation: blink 2s infinite;
 }
 
-.layer-8__left-lawn {
-  height: 70%;
-  left: 0;
+@keyframes blink {
+  0% {
+    height: 4px;
+  }
+  5% {
+    transform: translate(0px, 2px);
+    height: 1px;
+  }
+  10% {
+    transform: translate(0px, 0px);
+    height: 4px;
+  }
 }
 
-.layer-8__center-lawn {
-  height: 100%;
-  left: 60px;
+/** Animación selectores */
+.layer-1,
+.layer-2,
+.layer-4,
+.layer-6 input[type="checkbox"] {
+  animation: bunny 1.5s ease-in-out infinite;
 }
 
-.layer-8__right-lawn {
-  height: 80%;
-  left: 130px;
+@keyframes bunny {
+  0% {
+    bottom: 0;
+  }
+  25% {
+    bottom: -80px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+/** Animación saltos */
+.layer-1 {
+  /* animation-name: hopping;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite; */
+  animation: hopping 1s ease-in-out infinite;
+}
+
+.layer-2 {
+  animation: hopping 1.1s ease-in-out infinite;
+}
+
+.layer-4 {
+  animation: hopping 0.9s ease-in-out infinite;
+}
+
+.layer-6 {
+  animation: hopping 1.4s ease-in-out infinite;
+}
+
+@keyframes hopping {
+  0% {
+    bottom: 0;
+  }
+  25% {
+    bottom: -80px;
+  }
+  100% {
+    bottom: 0;
+  }
 }
